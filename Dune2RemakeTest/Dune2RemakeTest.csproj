@@ -1,0 +1,568 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6A777142-3459-4D68-8A0D-79E2C108446A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dune2RemakeTest</RootNamespace>
+    <AssemblyName>Dune2RemakeTest</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Sanford.Multimedia, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Sanford.Multimedia.Midi\bin\Debug\Sanford.Multimedia.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WriteableBitmapEx.Wpf">
+      <HintPath>..\packages\WriteableBitmapEx.1.0.14.0\lib\net40\WriteableBitmapEx.Wpf.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Buildings\Base.cs" />
+    <Compile Include="Buildings\Building.cs" />
+    <Compile Include="DebugWindow.xaml.cs">
+      <DependentUpon>DebugWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EnvironmentManager.cs" />
+    <Compile Include="Error.cs" />
+    <Compile Include="Events\UnitSelectionChanged.cs" />
+    <Compile Include="Graphics\GameButton.cs" />
+    <Compile Include="Graphics\MoveAnimation.cs" />
+    <Compile Include="Graphics\Terrain.cs" />
+    <Compile Include="Graphics\Unit.cs" />
+    <Compile Include="HelperClass\UnrolledList.cs" />
+    <Compile Include="Houses\House.cs" />
+    <Compile Include="Maps\MapElement.cs" />
+    <Compile Include="Maps\MapTemplate.cs" />
+    <Compile Include="Multiplayer\Client.cs" />
+    <Compile Include="Multiplayer\Server.cs" />
+    <Compile Include="MusicManager.cs" />
+    <Compile Include="Player\Player.cs" />
+    <Compile Include="Render.cs" />
+    <Compile Include="TerrainGenerator.cs" />
+    <Compile Include="UnitGenerator.cs" />
+    <Compile Include="Units\Devastator.cs" />
+    <Compile Include="Units\Events\ChangeDirectionEventArgs.cs" />
+    <Compile Include="Units\Events\ChangePositionEventArgs.cs" />
+    <Compile Include="Units\Unit.cs" />
+    <Compile Include="Units\UnitAction.cs" />
+    <Compile Include="Units\UnitSpecialAbilty.cs" />
+    <Compile Include="Units\UnitType.cs" />
+    <Page Include="DebugWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Units\Exceptions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Sprites\icon 0000.bmp" />
+    <Resource Include="Resources\Sprites\icon 0001.bmp" />
+    <Resource Include="Resources\Sprites\icon 0002.bmp" />
+    <Resource Include="Resources\Sprites\icon 0003.bmp" />
+    <Resource Include="Resources\Sprites\icon 0004.bmp" />
+    <Resource Include="Resources\Sprites\icon 0005.bmp" />
+    <Resource Include="Resources\Sprites\icon 0006.bmp" />
+    <Resource Include="Resources\Sprites\icon 0007.bmp" />
+    <Resource Include="Resources\Sprites\icon 0008.bmp" />
+    <Resource Include="Resources\Sprites\icon 0009.bmp" />
+    <Resource Include="Resources\Sprites\icon 0010.bmp" />
+    <Resource Include="Resources\Sprites\icon 0011.bmp" />
+    <Resource Include="Resources\Sprites\icon 0012.bmp" />
+    <Resource Include="Resources\Sprites\icon 0013.bmp" />
+    <Resource Include="Resources\Sprites\icon 0014.bmp" />
+    <Resource Include="Resources\Sprites\icon 0015.bmp" />
+    <Resource Include="Resources\Sprites\icon 0016.bmp" />
+    <Resource Include="Resources\Sprites\icon 0017.bmp" />
+    <Resource Include="Resources\Sprites\icon 0018.bmp" />
+    <Resource Include="Resources\Sprites\icon 0019.bmp" />
+    <Resource Include="Resources\Sprites\icon 0020.bmp" />
+    <Resource Include="Resources\Sprites\icon 0021.bmp" />
+    <Resource Include="Resources\Sprites\icon 0022.bmp" />
+    <Resource Include="Resources\Sprites\icon 0023.bmp" />
+    <Resource Include="Resources\Sprites\icon 0024.bmp" />
+    <Resource Include="Resources\Sprites\icon 0025.bmp" />
+    <Resource Include="Resources\Sprites\icon 0026.bmp" />
+    <Resource Include="Resources\Sprites\icon 0027.bmp" />
+    <Resource Include="Resources\Sprites\icon 0028.bmp" />
+    <Resource Include="Resources\Sprites\icon 0029.bmp" />
+    <Resource Include="Resources\Sprites\icon 0030.bmp" />
+    <Resource Include="Resources\Sprites\icon 0031.bmp" />
+    <Resource Include="Resources\Sprites\icon 0032.bmp" />
+    <Resource Include="Resources\Sprites\icon 0033.bmp" />
+    <Resource Include="Resources\Sprites\icon 0034.bmp" />
+    <Resource Include="Resources\Sprites\icon 0035.bmp" />
+    <Resource Include="Resources\Sprites\icon 0036.bmp" />
+    <Resource Include="Resources\Sprites\icon 0037.bmp" />
+    <Resource Include="Resources\Sprites\icon 0038.bmp" />
+    <Resource Include="Resources\Sprites\icon 0039.bmp" />
+    <Resource Include="Resources\Sprites\icon 0040.bmp" />
+    <Resource Include="Resources\Sprites\icon 0041.bmp" />
+    <Resource Include="Resources\Sprites\icon 0042.bmp" />
+    <Resource Include="Resources\Sprites\icon 0043.bmp" />
+    <Resource Include="Resources\Sprites\icon 0044.bmp" />
+    <Resource Include="Resources\Sprites\icon 0045.bmp" />
+    <Resource Include="Resources\Sprites\icon 0046.bmp" />
+    <Resource Include="Resources\Sprites\icon 0047.bmp" />
+    <Resource Include="Resources\Sprites\icon 0048.bmp" />
+    <Resource Include="Resources\Sprites\icon 0049.bmp" />
+    <Resource Include="Resources\Sprites\icon 0050.bmp" />
+    <Resource Include="Resources\Sprites\icon 0051.bmp" />
+    <Resource Include="Resources\Sprites\icon 0052.bmp" />
+    <Resource Include="Resources\Sprites\icon 0053.bmp" />
+    <Resource Include="Resources\Sprites\icon 0054.bmp" />
+    <Resource Include="Resources\Sprites\icon 0055.bmp" />
+    <Resource Include="Resources\Sprites\icon 0056.bmp" />
+    <Resource Include="Resources\Sprites\icon 0057.bmp" />
+    <Resource Include="Resources\Sprites\icon 0058.bmp" />
+    <Resource Include="Resources\Sprites\icon 0059.bmp" />
+    <Resource Include="Resources\Sprites\icon 0060.bmp" />
+    <Resource Include="Resources\Sprites\icon 0061.bmp" />
+    <Resource Include="Resources\Sprites\icon 0062.bmp" />
+    <Resource Include="Resources\Sprites\icon 0063.bmp" />
+    <Resource Include="Resources\Sprites\icon 0064.bmp" />
+    <Resource Include="Resources\Sprites\icon 0065.bmp" />
+    <Resource Include="Resources\Sprites\icon 0066.bmp" />
+    <Resource Include="Resources\Sprites\icon 0067.bmp" />
+    <Resource Include="Resources\Sprites\icon 0068.bmp" />
+    <Resource Include="Resources\Sprites\icon 0069.bmp" />
+    <Resource Include="Resources\Sprites\icon 0070.bmp" />
+    <Resource Include="Resources\Sprites\icon 0071.bmp" />
+    <Resource Include="Resources\Sprites\icon 0072.bmp" />
+    <Resource Include="Resources\Sprites\icon 0073.bmp" />
+    <Resource Include="Resources\Sprites\icon 0074.bmp" />
+    <Resource Include="Resources\Sprites\icon 0075.bmp" />
+    <Resource Include="Resources\Sprites\icon 0076.bmp" />
+    <Resource Include="Resources\Sprites\icon 0077.bmp" />
+    <Resource Include="Resources\Sprites\icon 0078.bmp" />
+    <Resource Include="Resources\Sprites\icon 0079.bmp" />
+    <Resource Include="Resources\Sprites\icon 0080.bmp" />
+    <Resource Include="Resources\Sprites\icon 0081.bmp" />
+    <Resource Include="Resources\Sprites\icon 0082.bmp" />
+    <Resource Include="Resources\Sprites\icon 0083.bmp" />
+    <Resource Include="Resources\Sprites\icon 0084.bmp" />
+    <Resource Include="Resources\Sprites\icon 0085.bmp" />
+    <Resource Include="Resources\Sprites\icon 0086.bmp" />
+    <Resource Include="Resources\Sprites\icon 0087.bmp" />
+    <Resource Include="Resources\Sprites\icon 0088.bmp" />
+    <Resource Include="Resources\Sprites\icon 0089.bmp" />
+    <Resource Include="Resources\Sprites\icon 0090.bmp" />
+    <Resource Include="Resources\Sprites\icon 0091.bmp" />
+    <Resource Include="Resources\Sprites\icon 0092.bmp" />
+    <Resource Include="Resources\Sprites\icon 0093.bmp" />
+    <Resource Include="Resources\Sprites\icon 0094.bmp" />
+    <Resource Include="Resources\Sprites\icon 0095.bmp" />
+    <Resource Include="Resources\Sprites\icon 0096.bmp" />
+    <Resource Include="Resources\Sprites\icon 0097.bmp" />
+    <Resource Include="Resources\Sprites\icon 0098.bmp" />
+    <Resource Include="Resources\Sprites\icon 0100.bmp" />
+    <Resource Include="Resources\Sprites\icon 0101.bmp" />
+    <Resource Include="Resources\Sprites\icon 0102.bmp" />
+    <Resource Include="Resources\Sprites\icon 0103.bmp" />
+    <Resource Include="Resources\Sprites\icon 0104.bmp" />
+    <Resource Include="Resources\Sprites\icon 0105.bmp" />
+    <Resource Include="Resources\Sprites\icon 0106.bmp" />
+    <Resource Include="Resources\Sprites\icon 0107.bmp" />
+    <Resource Include="Resources\Sprites\icon 0108.bmp" />
+    <Resource Include="Resources\Sprites\icon 0109.bmp" />
+    <Resource Include="Resources\Sprites\icon 0110.bmp" />
+    <Resource Include="Resources\Sprites\icon 0111.bmp" />
+    <Resource Include="Resources\Sprites\icon 0112.bmp" />
+    <Resource Include="Resources\Sprites\icon 0113.bmp" />
+    <Resource Include="Resources\Sprites\icon 0114.bmp" />
+    <Resource Include="Resources\Sprites\icon 0115.bmp" />
+    <Resource Include="Resources\Sprites\icon 0116.bmp" />
+    <Resource Include="Resources\Sprites\icon 0117.bmp" />
+    <Resource Include="Resources\Sprites\icon 0118.bmp" />
+    <Resource Include="Resources\Sprites\icon 0119.bmp" />
+    <Resource Include="Resources\Sprites\icon 0120.bmp" />
+    <Resource Include="Resources\Sprites\icon 0121.bmp" />
+    <Resource Include="Resources\Sprites\icon 0122.bmp" />
+    <Resource Include="Resources\Sprites\icon 0123.bmp" />
+    <Resource Include="Resources\Sprites\icon 0124.bmp" />
+    <Resource Include="Resources\Sprites\icon 0125.bmp" />
+    <Resource Include="Resources\Sprites\icon 0126.bmp" />
+    <Resource Include="Resources\Sprites\icon 0127.bmp" />
+    <Resource Include="Resources\Sprites\icon 0128.bmp" />
+    <Resource Include="Resources\Sprites\icon 0129.bmp" />
+    <Resource Include="Resources\Sprites\icon 0130.bmp" />
+    <Resource Include="Resources\Sprites\icon 0131.bmp" />
+    <Resource Include="Resources\Sprites\icon 0132.bmp" />
+    <Resource Include="Resources\Sprites\icon 0133.bmp" />
+    <Resource Include="Resources\Sprites\icon 0134.bmp" />
+    <Resource Include="Resources\Sprites\icon 0135.bmp" />
+    <Resource Include="Resources\Sprites\icon 0136.bmp" />
+    <Resource Include="Resources\Sprites\icon 0137.bmp" />
+    <Resource Include="Resources\Sprites\icon 0138.bmp" />
+    <Resource Include="Resources\Sprites\icon 0139.bmp" />
+    <Resource Include="Resources\Sprites\icon 0140.bmp" />
+    <Resource Include="Resources\Sprites\icon 0141.bmp" />
+    <Resource Include="Resources\Sprites\icon 0142.bmp" />
+    <Resource Include="Resources\Sprites\icon 0143.bmp" />
+    <Resource Include="Resources\Sprites\icon 0144.bmp" />
+    <Resource Include="Resources\Sprites\icon 0145.bmp" />
+    <Resource Include="Resources\Sprites\icon 0146.bmp" />
+    <Resource Include="Resources\Sprites\icon 0147.bmp" />
+    <Resource Include="Resources\Sprites\icon 0148.bmp" />
+    <Resource Include="Resources\Sprites\icon 0149.bmp" />
+    <Resource Include="Resources\Sprites\icon 0150.bmp" />
+    <Resource Include="Resources\Sprites\icon 0151.bmp" />
+    <Resource Include="Resources\Sprites\icon 0152.bmp" />
+    <Resource Include="Resources\Sprites\icon 0153.bmp" />
+    <Resource Include="Resources\Sprites\icon 0154.bmp" />
+    <Resource Include="Resources\Sprites\icon 0155.bmp" />
+    <Resource Include="Resources\Sprites\icon 0156.bmp" />
+    <Resource Include="Resources\Sprites\icon 0157.bmp" />
+    <Resource Include="Resources\Sprites\icon 0158.bmp" />
+    <Resource Include="Resources\Sprites\icon 0159.bmp" />
+    <Resource Include="Resources\Sprites\icon 0160.bmp" />
+    <Resource Include="Resources\Sprites\icon 0161.bmp" />
+    <Resource Include="Resources\Sprites\icon 0162.bmp" />
+    <Resource Include="Resources\Sprites\icon 0163.bmp" />
+    <Resource Include="Resources\Sprites\icon 0164.bmp" />
+    <Resource Include="Resources\Sprites\icon 0165.bmp" />
+    <Resource Include="Resources\Sprites\icon 0166.bmp" />
+    <Resource Include="Resources\Sprites\icon 0167.bmp" />
+    <Resource Include="Resources\Sprites\icon 0168.bmp" />
+    <Resource Include="Resources\Sprites\icon 0169.bmp" />
+    <Resource Include="Resources\Sprites\icon 0170.bmp" />
+    <Resource Include="Resources\Sprites\icon 0171.bmp" />
+    <Resource Include="Resources\Sprites\icon 0172.bmp" />
+    <Resource Include="Resources\Sprites\icon 0173.bmp" />
+    <Resource Include="Resources\Sprites\icon 0174.bmp" />
+    <Resource Include="Resources\Sprites\icon 0175.bmp" />
+    <Resource Include="Resources\Sprites\icon 0176.bmp" />
+    <Resource Include="Resources\Sprites\icon 0177.bmp" />
+    <Resource Include="Resources\Sprites\icon 0178.bmp" />
+    <Resource Include="Resources\Sprites\icon 0179.bmp" />
+    <Resource Include="Resources\Sprites\icon 0180.bmp" />
+    <Resource Include="Resources\Sprites\icon 0181.bmp" />
+    <Resource Include="Resources\Sprites\icon 0182.bmp" />
+    <Resource Include="Resources\Sprites\icon 0183.bmp" />
+    <Resource Include="Resources\Sprites\icon 0184.bmp" />
+    <Resource Include="Resources\Sprites\icon 0185.bmp" />
+    <Resource Include="Resources\Sprites\icon 0186.bmp" />
+    <Resource Include="Resources\Sprites\icon 0187.bmp" />
+    <Resource Include="Resources\Sprites\icon 0188.bmp" />
+    <Resource Include="Resources\Sprites\icon 0189.bmp" />
+    <Resource Include="Resources\Sprites\icon 0190.bmp" />
+    <Resource Include="Resources\Sprites\icon 0191.bmp" />
+    <Resource Include="Resources\Sprites\icon 0192.bmp" />
+    <Resource Include="Resources\Sprites\icon 0193.bmp" />
+    <Resource Include="Resources\Sprites\icon 0194.bmp" />
+    <Resource Include="Resources\Sprites\icon 0195.bmp" />
+    <Resource Include="Resources\Sprites\icon 0196.bmp" />
+    <Resource Include="Resources\Sprites\icon 0197.bmp" />
+    <Resource Include="Resources\Sprites\icon 0198.bmp" />
+    <Resource Include="Resources\Sprites\icon 0199.bmp" />
+    <Resource Include="Resources\Sprites\icon 0200.bmp" />
+    <Resource Include="Resources\Sprites\icon 0201.bmp" />
+    <Resource Include="Resources\Sprites\icon 0202.bmp" />
+    <Resource Include="Resources\Sprites\icon 0203.bmp" />
+    <Resource Include="Resources\Sprites\icon 0204.bmp" />
+    <Resource Include="Resources\Sprites\icon 0205.bmp" />
+    <Resource Include="Resources\Sprites\icon 0206.bmp" />
+    <Resource Include="Resources\Sprites\icon 0207.bmp" />
+    <Resource Include="Resources\Sprites\icon 0208.bmp" />
+    <Resource Include="Resources\Sprites\icon 0209.bmp" />
+    <Resource Include="Resources\Sprites\icon 0210.bmp" />
+    <Resource Include="Resources\Sprites\icon 0211.bmp" />
+    <Resource Include="Resources\Sprites\icon 0212.bmp" />
+    <Resource Include="Resources\Sprites\icon 0213.bmp" />
+    <Resource Include="Resources\Sprites\icon 0214.bmp" />
+    <Resource Include="Resources\Sprites\icon 0215.bmp" />
+    <Resource Include="Resources\Sprites\icon 0216.bmp" />
+    <Resource Include="Resources\Sprites\icon 0217.bmp" />
+    <Resource Include="Resources\Sprites\icon 0218.bmp" />
+    <Resource Include="Resources\Sprites\icon 0219.bmp" />
+    <Resource Include="Resources\Sprites\icon 0220.bmp" />
+    <Resource Include="Resources\Sprites\icon 0221.bmp" />
+    <Resource Include="Resources\Sprites\icon 0222.bmp" />
+    <Resource Include="Resources\Sprites\icon 0223.bmp" />
+    <Resource Include="Resources\Sprites\icon 0224.bmp" />
+    <Resource Include="Resources\Sprites\icon 0225.bmp" />
+    <Resource Include="Resources\Sprites\icon 0226.bmp" />
+    <Resource Include="Resources\Sprites\icon 0227.bmp" />
+    <Resource Include="Resources\Sprites\icon 0228.bmp" />
+    <Resource Include="Resources\Sprites\icon 0229.bmp" />
+    <Resource Include="Resources\Sprites\icon 0230.bmp" />
+    <Resource Include="Resources\Sprites\icon 0231.bmp" />
+    <Resource Include="Resources\Sprites\icon 0232.bmp" />
+    <Resource Include="Resources\Sprites\icon 0233.bmp" />
+    <Resource Include="Resources\Sprites\icon 0234.bmp" />
+    <Resource Include="Resources\Sprites\icon 0235.bmp" />
+    <Resource Include="Resources\Sprites\icon 0236.bmp" />
+    <Resource Include="Resources\Sprites\icon 0237.bmp" />
+    <Resource Include="Resources\Sprites\icon 0238.bmp" />
+    <Resource Include="Resources\Sprites\icon 0239.bmp" />
+    <Resource Include="Resources\Sprites\icon 0240.bmp" />
+    <Resource Include="Resources\Sprites\icon 0241.bmp" />
+    <Resource Include="Resources\Sprites\icon 0242.bmp" />
+    <Resource Include="Resources\Sprites\icon 0243.bmp" />
+    <Resource Include="Resources\Sprites\icon 0244.bmp" />
+    <Resource Include="Resources\Sprites\icon 0245.bmp" />
+    <Resource Include="Resources\Sprites\icon 0246.bmp" />
+    <Resource Include="Resources\Sprites\icon 0247.bmp" />
+    <Resource Include="Resources\Sprites\icon 0248.bmp" />
+    <Resource Include="Resources\Sprites\icon 0249.bmp" />
+    <Resource Include="Resources\Sprites\icon 0250.bmp" />
+    <Resource Include="Resources\Sprites\icon 0251.bmp" />
+    <Resource Include="Resources\Sprites\icon 0252.bmp" />
+    <Resource Include="Resources\Sprites\icon 0253.bmp" />
+    <Resource Include="Resources\Sprites\icon 0254.bmp" />
+    <Resource Include="Resources\Sprites\icon 0255.bmp" />
+    <Resource Include="Resources\Sprites\icon 0256.bmp" />
+    <Resource Include="Resources\Sprites\icon 0257.bmp" />
+    <Resource Include="Resources\Sprites\icon 0258.bmp" />
+    <Resource Include="Resources\Sprites\icon 0259.bmp" />
+    <Resource Include="Resources\Sprites\icon 0260.bmp" />
+    <Resource Include="Resources\Sprites\icon 0261.bmp" />
+    <Resource Include="Resources\Sprites\icon 0262.bmp" />
+    <Resource Include="Resources\Sprites\icon 0263.bmp" />
+    <Resource Include="Resources\Sprites\icon 0264.bmp" />
+    <Resource Include="Resources\Sprites\icon 0265.bmp" />
+    <Resource Include="Resources\Sprites\icon 0266.bmp" />
+    <Resource Include="Resources\Sprites\icon 0267.bmp" />
+    <Resource Include="Resources\Sprites\icon 0268.bmp" />
+    <Resource Include="Resources\Sprites\icon 0269.bmp" />
+    <Resource Include="Resources\Sprites\icon 0270.bmp" />
+    <Resource Include="Resources\Sprites\icon 0271.bmp" />
+    <Resource Include="Resources\Sprites\icon 0272.bmp" />
+    <Resource Include="Resources\Sprites\icon 0273.bmp" />
+    <Resource Include="Resources\Sprites\icon 0274.bmp" />
+    <Resource Include="Resources\Sprites\icon 0275.bmp" />
+    <Resource Include="Resources\Sprites\icon 0276.bmp" />
+    <Resource Include="Resources\Sprites\icon 0277.bmp" />
+    <Resource Include="Resources\Sprites\icon 0278.bmp" />
+    <Resource Include="Resources\Sprites\icon 0279.bmp" />
+    <Resource Include="Resources\Sprites\icon 0280.bmp" />
+    <Resource Include="Resources\Sprites\icon 0281.bmp" />
+    <Resource Include="Resources\Sprites\icon 0282.bmp" />
+    <Resource Include="Resources\Sprites\icon 0283.bmp" />
+    <Resource Include="Resources\Sprites\icon 0284.bmp" />
+    <Resource Include="Resources\Sprites\icon 0285.bmp" />
+    <Resource Include="Resources\Sprites\icon 0286.bmp" />
+    <Resource Include="Resources\Sprites\icon 0287.bmp" />
+    <Resource Include="Resources\Sprites\icon 0288.bmp" />
+    <Resource Include="Resources\Sprites\icon 0289.bmp" />
+    <Resource Include="Resources\Sprites\icon 0290.bmp" />
+    <Resource Include="Resources\Sprites\icon 0291.bmp" />
+    <Resource Include="Resources\Sprites\icon 0292.bmp" />
+    <Resource Include="Resources\Sprites\icon 0293.bmp" />
+    <Resource Include="Resources\Sprites\icon 0294.bmp" />
+    <Resource Include="Resources\Sprites\icon 0295.bmp" />
+    <Resource Include="Resources\Sprites\icon 0296.bmp" />
+    <Resource Include="Resources\Sprites\icon 0297.bmp" />
+    <Resource Include="Resources\Sprites\icon 0298.bmp" />
+    <Resource Include="Resources\Sprites\icon 0299.bmp" />
+    <Resource Include="Resources\Sprites\icon 0300.bmp" />
+    <Resource Include="Resources\Sprites\icon 0301.bmp" />
+    <Resource Include="Resources\Sprites\icon 0302.bmp" />
+    <Resource Include="Resources\Sprites\icon 0303.bmp" />
+    <Resource Include="Resources\Sprites\icon 0304.bmp" />
+    <Resource Include="Resources\Sprites\icon 0305.bmp" />
+    <Resource Include="Resources\Sprites\icon 0306.bmp" />
+    <Resource Include="Resources\Sprites\icon 0307.bmp" />
+    <Resource Include="Resources\Sprites\icon 0308.bmp" />
+    <Resource Include="Resources\Sprites\icon 0309.bmp" />
+    <Resource Include="Resources\Sprites\icon 0310.bmp" />
+    <Resource Include="Resources\Sprites\icon 0311.bmp" />
+    <Resource Include="Resources\Sprites\icon 0312.bmp" />
+    <Resource Include="Resources\Sprites\icon 0313.bmp" />
+    <Resource Include="Resources\Sprites\icon 0314.bmp" />
+    <Resource Include="Resources\Sprites\icon 0315.bmp" />
+    <Resource Include="Resources\Sprites\icon 0316.bmp" />
+    <Resource Include="Resources\Sprites\icon 0317.bmp" />
+    <Resource Include="Resources\Sprites\icon 0318.bmp" />
+    <Resource Include="Resources\Sprites\icon 0319.bmp" />
+    <Resource Include="Resources\Sprites\icon 0320.bmp" />
+    <Resource Include="Resources\Sprites\icon 0321.bmp" />
+    <Resource Include="Resources\Sprites\icon 0322.bmp" />
+    <Resource Include="Resources\Sprites\icon 0323.bmp" />
+    <Resource Include="Resources\Sprites\icon 0324.bmp" />
+    <Resource Include="Resources\Sprites\icon 0325.bmp" />
+    <Resource Include="Resources\Sprites\icon 0326.bmp" />
+    <Resource Include="Resources\Sprites\icon 0327.bmp" />
+    <Resource Include="Resources\Sprites\icon 0328.bmp" />
+    <Resource Include="Resources\Sprites\icon 0329.bmp" />
+    <Resource Include="Resources\Sprites\icon 0330.bmp" />
+    <Resource Include="Resources\Sprites\icon 0331.bmp" />
+    <Resource Include="Resources\Sprites\icon 0332.bmp" />
+    <Resource Include="Resources\Sprites\icon 0333.bmp" />
+    <Resource Include="Resources\Sprites\icon 0334.bmp" />
+    <Resource Include="Resources\Sprites\icon 0335.bmp" />
+    <Resource Include="Resources\Sprites\icon 0336.bmp" />
+    <Resource Include="Resources\Sprites\icon 0337.bmp" />
+    <Resource Include="Resources\Sprites\icon 0338.bmp" />
+    <Resource Include="Resources\Sprites\icon 0339.bmp" />
+    <Resource Include="Resources\Sprites\icon 0340.bmp" />
+    <Resource Include="Resources\Sprites\icon 0341.bmp" />
+    <Resource Include="Resources\Sprites\icon 0342.bmp" />
+    <Resource Include="Resources\Sprites\icon 0343.bmp" />
+    <Resource Include="Resources\Sprites\icon 0344.bmp" />
+    <Resource Include="Resources\Sprites\icon 0345.bmp" />
+    <Resource Include="Resources\Sprites\icon 0346.bmp" />
+    <Resource Include="Resources\Sprites\icon 0347.bmp" />
+    <Resource Include="Resources\Sprites\icon 0348.bmp" />
+    <Resource Include="Resources\Sprites\icon 0349.bmp" />
+    <Resource Include="Resources\Sprites\icon 0350.bmp" />
+    <Resource Include="Resources\Sprites\icon 0351.bmp" />
+    <Resource Include="Resources\Sprites\icon 0352.bmp" />
+    <Resource Include="Resources\Sprites\icon 0353.bmp" />
+    <Resource Include="Resources\Sprites\icon 0354.bmp" />
+    <Resource Include="Resources\Sprites\icon 0355.bmp" />
+    <Resource Include="Resources\Sprites\icon 0356.bmp" />
+    <Resource Include="Resources\Sprites\icon 0357.bmp" />
+    <Resource Include="Resources\Sprites\icon 0358.bmp" />
+    <Resource Include="Resources\Sprites\icon 0359.bmp" />
+    <Resource Include="Resources\Sprites\icon 0360.bmp" />
+    <Resource Include="Resources\Sprites\icon 0361.bmp" />
+    <Resource Include="Resources\Sprites\icon 0362.bmp" />
+    <Resource Include="Resources\Sprites\icon 0363.bmp" />
+    <Resource Include="Resources\Sprites\icon 0364.bmp" />
+    <Resource Include="Resources\Sprites\icon 0365.bmp" />
+    <Resource Include="Resources\Sprites\icon 0366.bmp" />
+    <Resource Include="Resources\Sprites\icon 0367.bmp" />
+    <Resource Include="Resources\Sprites\icon 0368.bmp" />
+    <Resource Include="Resources\Sprites\icon 0369.bmp" />
+    <Resource Include="Resources\Sprites\icon 0370.bmp" />
+    <Resource Include="Resources\Sprites\icon 0371.bmp" />
+    <Resource Include="Resources\Sprites\icon 0372.bmp" />
+    <Resource Include="Resources\Sprites\icon 0373.bmp" />
+    <Resource Include="Resources\Sprites\icon 0374.bmp" />
+    <Resource Include="Resources\Sprites\icon 0375.bmp" />
+    <Resource Include="Resources\Sprites\icon 0376.bmp" />
+    <Resource Include="Resources\Sprites\icon 0377.bmp" />
+    <Resource Include="Resources\Sprites\icon 0378.bmp" />
+    <Resource Include="Resources\Sprites\icon 0379.bmp" />
+    <Resource Include="Resources\Sprites\icon 0380.bmp" />
+    <Resource Include="Resources\Sprites\icon 0381.bmp" />
+    <Resource Include="Resources\Sprites\icon 0382.bmp" />
+    <Resource Include="Resources\Sprites\icon 0383.bmp" />
+    <Resource Include="Resources\Sprites\icon 0384.bmp" />
+    <Resource Include="Resources\Sprites\icon 0385.bmp" />
+    <Resource Include="Resources\Sprites\icon 0386.bmp" />
+    <Resource Include="Resources\Sprites\icon 0387.bmp" />
+    <Resource Include="Resources\Sprites\icon 0388.bmp" />
+    <Resource Include="Resources\Sprites\icon 0389.bmp" />
+    <Resource Include="Resources\Sprites\icon 0390.bmp" />
+    <Resource Include="Resources\Sprites\icon 0391.bmp" />
+    <Resource Include="Resources\Sprites\icon 0392.bmp" />
+    <Resource Include="Resources\Sprites\icon 0393.bmp" />
+    <Resource Include="Resources\Sprites\icon 0394.bmp" />
+    <Resource Include="Resources\Sprites\icon 0395.bmp" />
+    <Resource Include="Resources\Sprites\icon 0396.bmp" />
+    <Resource Include="Resources\Sprites\icon 0397.bmp" />
+    <Resource Include="Resources\Sprites\icon 0398.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Units\Unit_Devastator.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Terrain\sand.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sanford.Multimedia.Midi\Sanford.Multimedia.Midi.csproj">
+      <Project>{4269c72a-8d3a-4737-8f89-72eaa33ea9e1}</Project>
+      <Name>Sanford.Multimedia.Midi</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
