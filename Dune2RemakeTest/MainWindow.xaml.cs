@@ -25,7 +25,7 @@ namespace Dune2RemakeTest
             _musicManager.AddMusic(new Uri(@"Resources\Music\building1.MID", UriKind.Relative));
             _musicManager.AddMusic(new Uri(@"Resources\Music\building0.MID", UriKind.Relative));
             _musicManager.AddMusic(new Uri(@"Resources\Music\building2.MID", UriKind.Relative));
-            _musicManager.Play();
+            //_musicManager.Play();
 
             TerrainGenerator t = new TerrainGenerator(this);
             UnitGenerator ug = new UnitGenerator(this);

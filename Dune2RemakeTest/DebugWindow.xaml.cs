@@ -34,5 +34,11 @@ namespace Dune2RemakeTest
                 Unit.DebugTransform(dbl);
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var tw = new TestWindow();
+            tw.Show();
+        }
     }
 }

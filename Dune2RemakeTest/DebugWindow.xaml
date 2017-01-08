@@ -11,6 +11,7 @@
         <Button Content="TurnRight" x:Name="turnRight" Click="TurnRight_OnClick" HorizontalAlignment="Left" Margin="103,220,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="TranslateManual" x:Name="TranslateManualButton" Click="TranslateManualButton_OnClick" HorizontalAlignment="Left" Margin="204,220,0,0" VerticalAlignment="Top" Width="115"/>
         <TextBox HorizontalAlignment="Left" Height="20" Margin="324,220,0,0" TextWrapping="Wrap" x:Name="ValueTranslaTextBox" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
 
     </Grid>
 </Window>
