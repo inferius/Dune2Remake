@@ -23,11 +23,13 @@ namespace Dune2RemakeTest.Graphics
         #endregion
 
         private Units.Unit _unit;
+        public Units.Unit CurrentUnit { get { return _unit; } } 
         //public Units.Unit CurrentUnit { get { return _unit; } private set { _unit = value; } }
 
         private SoundPlayer _sp = new SoundPlayer();
         internal Graphics.Unit _SelectedUnit;
         private Canvas _back_canvas;
+        private Canvas _cannon_canvas;
         private double _offset_x = -7;
 
         public Unit(Units.Unit unit) {
@@ -53,8 +55,26 @@ namespace Dune2RemakeTest.Graphics
                 Transform = _unit.PositionTransform[UnitDirection.East]
             };
 
+            if (_unit.BaseCannonImage != null)
+            {
+                _cannon_canvas = new Canvas();
+                _cannon_canvas.Width = ((9 * _unit.Width) - 15) * 0.8;
+                _cannon_canvas.Height = (_unit.Height - 10) * 0.8;
+                Children.Add(_cannon_canvas);
+
+                _cannon_canvas.Background = new ImageBrush()
+                {
+                    ImageSource = new BitmapImage(_unit.BaseCannonImage),
+                    Stretch = Stretch.UniformToFill,
+                    AlignmentX = AlignmentX.Left,
+                    AlignmentY = AlignmentY.Top,
+                    Transform = _unit.CannonPositionTransform[UnitDirection.East]
+                };
+            }
+
             MouseLeftButtonUp += Unit_MouseLeftButtonUp;
             _unit.OnChangeDirection += UnitOnOnChangeDirection;
+            _unit.OnChangeCannonDirection += UnitCannonOnOnChangeDirection;
         }
 
         #region Zpracovani udalosti
@@ -62,6 +82,11 @@ namespace Dune2RemakeTest.Graphics
         {
             //_back_canvas.Background.Transform = new TranslateTransform(((double)((int)changeDirectionEventArgs.Direction * Width) * -1 + ((int)changeDirectionEventArgs.Direction) * _offset_x), 0);
             _back_canvas.Background.Transform = _unit.PositionTransform[changeDirectionEventArgs.Direction];
+        }
+
+        private void UnitCannonOnOnChangeDirection(object sender, ChangeDirectionEventArgs changeDirectionEventArgs)
+        {
+            _cannon_canvas.Background.Transform = _unit.CannonPositionTransform[changeDirectionEventArgs.Direction];
         }
 
         public void DebugTransform(double dbl)
@@ -240,6 +265,16 @@ namespace Dune2RemakeTest.Graphics
         public void TurnRight()
         {
             _unit.TurnRight();
+        }
+
+        public void TurnCannonLeft()
+        {
+            _unit.CanonTurnLeft();
+        }
+
+        public void TurnCannonRight()
+        {
+            _unit.CanonTurnRight();
         }
 
         public override string ToString()

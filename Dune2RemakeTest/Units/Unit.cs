@@ -13,6 +13,9 @@ namespace Dune2RemakeTest.Units
         public delegate void ChangeDirectionHandler(object sender, Events.ChangeDirectionEventArgs e);
         public event ChangeDirectionHandler OnChangeDirection;
 
+        public delegate void ChangeCannonDirectionHandler(object sender, Events.ChangeDirectionEventArgs e);
+        public event ChangeCannonDirectionHandler OnChangeCannonDirection;
+
         public delegate void ChangePositionHandler(object sender, Events.ChangePositionEventArgs e);
         public event ChangePositionHandler OnChangePosition;
         #endregion
@@ -88,7 +91,7 @@ namespace Dune2RemakeTest.Units
             }
         }
 
-        UnitDirection _currentDirection;
+        UnitDirection _currentDirection = UnitDirection.East;
         public UnitDirection CurrentDirection
         {
             get { return _currentDirection; }
@@ -97,11 +100,22 @@ namespace Dune2RemakeTest.Units
                 var ea = new ChangeDirectionEventArgs(_currentDirection, value);
 
                 _currentDirection = value;
-                if (OnChangeDirection != null)
-                    OnChangeDirection(this, ea);
+                OnChangeDirection?.Invoke(this, ea);
             }
         }
-        public UnitDirection CanonDirection { get; protected set; }
+
+        UnitDirection _canonDirection = UnitDirection.East;
+        public UnitDirection CannonDirection
+        {
+            get { return _canonDirection; }
+            set
+            {
+                var ea = new ChangeDirectionEventArgs(_currentDirection, value);
+
+                _canonDirection = value;
+                OnChangeCannonDirection?.Invoke(this, ea);
+            }
+        }
         /// <summary>
         /// Indikuje, zda je kanon synchrozniovany z pohybem nebo ne. Pokud true, kanon se otaci s vozidlem (miri vzdy stejne kam vuz jede)
         /// </summary>
@@ -110,15 +124,12 @@ namespace Dune2RemakeTest.Units
         public bool IsFire { get; protected set; }
 
         public Uri BaseImage { get; protected set; }
+        public Uri BaseCannonImage { get; protected set; }
         public int Width { get; protected set; }
         public int Height { get; protected set; }
 
-        private Dictionary<UnitDirection, TranslateTransform> _positionTransform = new Dictionary<UnitDirection, TranslateTransform>();
-        public Dictionary<UnitDirection, TranslateTransform> PositionTransform
-        {
-            get { return _positionTransform; }
-            set { _positionTransform = value; }
-        }
+        public Dictionary<UnitDirection, TranslateTransform> PositionTransform { get; set; } = new Dictionary<UnitDirection, TranslateTransform>();
+        public Dictionary<UnitDirection, TranslateTransform> CannonPositionTransform { get; set; } = new Dictionary<UnitDirection, TranslateTransform>();
 
         public Unit()
         {
@@ -144,7 +155,7 @@ namespace Dune2RemakeTest.Units
             if (CurrentDirection == UnitDirection.NorthEast) CurrentDirection = UnitDirection.North;
             else CurrentDirection++;
 
-            if (CannonSynchronize) CanonDirection = CurrentDirection;
+            if (CannonSynchronize) CannonDirection = CurrentDirection;
         }
 
         public void TurnRight()
@@ -152,19 +163,19 @@ namespace Dune2RemakeTest.Units
             if (CurrentDirection == UnitDirection.North) CurrentDirection = UnitDirection.NorthEast;
             else CurrentDirection--;
 
-            if (CannonSynchronize) CanonDirection = CurrentDirection;
+            if (CannonSynchronize) CannonDirection = CurrentDirection;
         }
 
         public void CanonTurnLeft()
         {
-            if (CanonDirection == UnitDirection.NorthEast) CanonDirection = UnitDirection.North;
-            else CanonDirection++;
+            if (CannonDirection == UnitDirection.NorthEast) CannonDirection = UnitDirection.North;
+            else CannonDirection++;
         }
 
         public void CanonTurnRight()
         {
-            if (CanonDirection == UnitDirection.North) CanonDirection = UnitDirection.NorthEast;
-            else CanonDirection--;
+            if (CannonDirection == UnitDirection.North) CannonDirection = UnitDirection.NorthEast;
+            else CannonDirection--;
         }
     }
 

@@ -11,7 +11,11 @@
         <Button Content="TurnRight" x:Name="turnRight" Click="TurnRight_OnClick" HorizontalAlignment="Left" Margin="103,220,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="TranslateManual" x:Name="TranslateManualButton" Click="TranslateManualButton_OnClick" HorizontalAlignment="Left" Margin="204,220,0,0" VerticalAlignment="Top" Width="115"/>
         <TextBox HorizontalAlignment="Left" Height="20" Margin="324,220,0,0" TextWrapping="Wrap" x:Name="ValueTranslaTextBox" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button Content="TurnCannonLeft" x:Name="TurnCannonLeft" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top" Width="111" Click="TurnCannonLeft_Click"/>
+        <Button Content="TurnCannonRight"  x:Name="TurnCannonRight" HorizontalAlignment="Left" Margin="126,195,0,0" VerticalAlignment="Top" Width="111" Click="TurnCannonRight_Click"/>
+        <Button Content="Test Window" HorizontalAlignment="Left" Margin="250,194,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Label Content="Label" x:Name="cannonTurnState" HorizontalAlignment="Left" Margin="334,191,0,0" VerticalAlignment="Top"/>
+        <Label Content="Label" x:Name="vehicleTurnState" HorizontalAlignment="Left" Margin="449,215,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

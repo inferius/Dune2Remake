@@ -32,7 +32,7 @@ namespace Dune2RemakeTest
 
 
             ug.AddUnit(new Devastator(), new Point(30, 50));
-            ug.AddUnit(new Devastator(), new Point(30, 100));
+            ug.AddUnit(new Tank(), new Point(30, 100));
         }
 
         private void MainCanvas_OnMouseMove(object sender, MouseEventArgs e)
